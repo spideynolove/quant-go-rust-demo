@@ -1,0 +1,184 @@
+Gecko is a high-performance Order Management System (OMS) designed for high-frequency trading environments. It handles the entire lifecycle of orders from creation to execution, with sophisticated state management and error handling capabilities.
+Features
+
+
+
+Comprehensive Order Lifecycle Management: Tracks orders from creation through execution and settlement
+
+Sophisticated State Machine: Ensures proper state transitions with validation
+
+Event-Driven Architecture: Uses NATS for decoupled, highly available communication
+
+Error Recovery: Robust error handling with automatic retries and fallback mechanisms
+
+Monitoring: Timeout detection and state tracking
+
+Architecture
+
+Gecko uses a modern event-driven architecture built on:
+
+
+Rust: For performance, safety, and reliability
+
+NATS: High-performance messaging system for component communication
+
+Tokio: Asynchronous runtime for concurrent operations
+
+Serde: Serialization/deserialization for message formats
+
+For detailed architecture information, see Architecture Documentation.
+Getting Started
+
+Prerequisites
+
+
+Rust 1.70 or later
+NATS server 2.9 or later
+Cargo and rustup
+
+Installation
+
+
+
+Clone the repository
+
+git clone https://github.com/yourusername/gecko.git
+cd gecko
+
+
+
+
+Build the project
+
+cargo build --release
+
+
+
+
+Configuration
+
+Gecko uses environment variables for configuration:
+
+OMS_ERROR_TOPIC=oms.error
+OMS_EXECUTE_TOPIC=oms.execute
+OMS_ORDER_TIMEOUT_MS=5000
+OMS_RETRY_INTERVAL_MS=1000
+OMS_MAX_RETRIES=3
+OMS_NATS_URL=nats://localhost:4222
+
+
+Alternatively, create a .env file in the project root with these values.
+Running the OMS
+
+
+cargo run --release
+
+
+Production Readiness Checklist
+
+To make Gecko production-ready, follow this improvement roadmap:
+Phase 1: Core Stability and Robustness
+
+
+
+ Complete implementation of all state transitions
+
+ Add comprehensive unit tests for state transitions
+
+ Enhance error categorization and logging
+
+ Implement recovery strategies for each error type
+
+ Add configuration validation
+
+ Implement environment-based configuration
+
+ Add detailed metrics for order processing
+
+Phase 2: Performance Optimization
+
+
+
+ Profile for latency bottlenecks
+
+ Optimize serialization/deserialization
+
+ Implement memory pooling for common objects
+
+ Add parallel processing where possible
+
+ Optimize lock contention
+
+ Implement order resource limits
+
+ Add rate limiting for exchange communication
+
+Phase 3: Operational Excellence
+
+
+
+ Containerize with Docker
+
+ Create Kubernetes deployment manifests
+
+ Integrate with distributed tracing
+
+ Add structured logging with correlation IDs
+
+ Create operational dashboards
+
+ Implement circuit breakers
+
+ Add automated recovery procedures
+
+ Create chaos testing scenarios
+
+Phase 4: Feature Expansion
+
+
+
+ Abstract exchange-specific logic
+
+ Support multiple exchanges
+
+ Implement advanced order types (iceberg, conditional)
+
+ Add TWAP/VWAP execution algorithms
+
+ Implement pre-trade risk checks
+
+ Add position limit enforcement
+
+Phase 5: Architecture Evolution
+
+
+
+ Split into specialized microservices
+
+ Implement service discovery
+
+ Create API gateway
+
+ Implement event sourcing for order history
+
+ Add time-series storage for metrics
+
+ Create leader election for redundancy
+
+ Add geographic replication
+
+Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+Acknowledgements
+
+
+
+NATS for the messaging system
+
+Tokio for the asynchronous runtime
+
+Serde for serialization/deserialization
