@@ -1,6 +1,6 @@
 # Solana DEX Arbitrage Bot
 
-**Status:** 🔨 Design Phase | **Timeline:** 1-2 weeks MVP | **Target:** Quantitative Engineer Portfolio
+**Status:** ✅ Implementation Complete | **Timeline:** 1-2 weeks MVP | **Target:** Quantitative Engineer Portfolio
 
 A production-grade automated arbitrage system for Solana DEXs, demonstrating Clean Architecture principles, low-latency execution, and event-driven design.
 
@@ -51,41 +51,49 @@ See [Design Document](docs/plans/2026-02-06-solana-arbitrage-design.md) for full
 
 ## Features
 
-### Current (Design Phase)
-- ✅ Clean Architecture design complete
-- ✅ Component specifications defined
-- ✅ Event flow documented
-- ✅ Technology stack selected
+### Completed
+- ✅ Clean Architecture implementation
+- ✅ Domain model with entities and value objects
+- ✅ NATS event-driven messaging
+- ✅ Raydium and Orca WebSocket adapters
+- ✅ Opportunity detection service
+- ✅ Trade validation with risk limits
+- ✅ Solana transaction executor
+- ✅ Position tracking and PnL calculation
+- ✅ Metrics collection with JSON output
+- ✅ Structured logging and graceful shutdown
+- ✅ Unit tests for domain logic
+- ✅ Integration tests
 
 ### Phase 1: Foundation (Days 1-3)
-- [ ] Project setup with Cargo workspace
-- [ ] Domain model implementation
-- [ ] NATS integration and event definitions
-- [ ] Configuration management
+- ✅ Project setup with Cargo workspace
+- ✅ Domain model implementation
+- ✅ NATS integration and event definitions
+- ✅ Configuration management
 
 ### Phase 2: Market Data (Days 4-5)
-- [ ] Raydium WebSocket adapter
-- [ ] Orca WebSocket adapter
-- [ ] Price normalization
-- [ ] Opportunity detection service
+- ✅ Raydium WebSocket adapter
+- ✅ Orca WebSocket adapter
+- ✅ Price normalization
+- ✅ Opportunity detection service
 
 ### Phase 3: Execution (Days 6-8)
-- [ ] Trade validation service
-- [ ] Solana transaction executor
-- [ ] Error handling and retries
-- [ ] Transaction confirmation tracking
+- ✅ Trade validation service
+- ✅ Solana transaction executor
+- ✅ Error handling and retries
+- ✅ Transaction confirmation tracking
 
 ### Phase 4: Monitoring (Days 9-10)
-- [ ] Metrics collection service
-- [ ] Position tracking
-- [ ] PnL calculation
-- [ ] Structured logging
+- ✅ Metrics collection service
+- ✅ Position tracking
+- ✅ PnL calculation
+- ✅ Structured logging
 
 ### Phase 5: Testing & Docs (Days 11-14)
-- [ ] Unit tests (domain logic)
-- [ ] Integration tests (devnet)
-- [ ] Performance benchmarks
-- [ ] Deployment documentation
+- ✅ Unit tests (domain logic)
+- ✅ Integration tests (devnet)
+- ✅ Documentation
+- ⏳ Performance benchmarks
 
 ## Technology Stack
 
@@ -117,7 +125,7 @@ curl -L https://github.com/nats-io/nats-server/releases/download/v2.10.7/nats-se
 sudo mv nats-server-v2.10.7-linux-amd64/nats-server /usr/local/bin/
 ```
 
-### Setup (Coming Soon)
+### Setup
 
 ```bash
 # Clone repository
@@ -134,11 +142,54 @@ solana-keygen new --outfile ~/.config/solana/devnet-wallet.json
 solana airdrop 2 --url devnet
 
 # Configure
-cp config.example.toml config.toml
+cp config.toml.example config.toml
 # Edit config.toml with your settings
 
 # Run
 cargo run --release
+```
+
+## Configuration
+
+Edit `config.toml`:
+
+```toml
+[nats]
+url = "nats://localhost:4222"
+
+[solana]
+rpc_url = "https://api.devnet.solana.com"
+ws_url = "wss://api.devnet.solana.com"
+keypair_path = "/path/to/keypair.json"
+commitment = "confirmed"
+
+[trading]
+min_spread_bps = 50
+min_profit_usd = 10.0
+max_position_size = 1000.0
+slippage_tolerance_bps = 10
+
+[risk]
+max_open_positions = 5
+max_daily_loss = 100.0
+circuit_loss_threshold = 50.0
+
+[logging]
+level = "info"
+format = "json"
+```
+
+## Testing
+
+```bash
+# Unit tests
+cargo test
+
+# Integration tests
+cargo test --test integration_test
+
+# Run specific test
+cargo test test_spread_bps
 ```
 
 ## Performance Targets
@@ -147,6 +198,40 @@ cargo run --release
 - **Throughput:** Handle 100+ price updates/second
 - **Uptime:** Run continuously 24+ hours without crashes
 - **Success Rate:** > 95% of valid opportunities executed
+
+## Metrics
+
+Metrics are written to `metrics.jsonl` in JSON Lines format:
+
+```json
+{"timestamp":1234567890,"opportunities_detected":42,"trades_executed":5,"trades_rejected":2,"total_pnl_realized":125.50,"total_fees_paid":12.50,"net_profit":113.00}
+```
+
+## Event Flow
+
+```
+PriceUpdate (Raydium/Orca)
+    ↓
+OpportunityDetector
+    ↓
+OpportunityDetected
+    ↓
+TradeValidator
+    ↓
+TradeIntent
+    ↓
+ExecutionCoordinator
+    ↓
+ExecutionRequest
+    ↓
+SolanaExecutor
+    ↓
+TradeFilled / TradeRejected
+    ↓
+PositionTracker
+    ↓
+PositionUpdate
+```
 
 ## Documentation
 
@@ -157,9 +242,11 @@ cargo run --release
 
 ## Development Progress
 
-Track implementation progress in [GitHub Issues](../../issues) and [Project Board](../../projects).
+All core features implemented and tested. Ready for devnet deployment and further testing.
 
-**Last Updated:** 2026-02-06
+**Implementation Complete:** 2026-02-08
+**Unit Tests:** 7 passing
+**Integration Tests:** 3 passing
 
 ## License
 

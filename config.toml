@@ -1,0 +1,32 @@
+[nats]
+url = "nats://localhost:4222"
+
+[solana]
+rpc_url = "https://api.devnet.solana.com"
+ws_url = "wss://api.devnet.solana.com"
+keypair_path = "/path/to/keypair.json"
+commitment = "confirmed"
+
+[trading]
+min_spread_bps = 50
+min_profit_usd = 10.0
+max_position_size = 1000.0
+max_trade_size = 100.0
+slippage_tolerance_bps = 10
+
+[risk]
+max_open_positions = 5
+max_daily_loss = 100.0
+circuit_loss_threshold = 50.0
+
+[logging]
+level = "info"
+format = "json"
+
+[dexs.raydium]
+websocket_url = "wss://api.raydium.io/v2/subscribe"
+pool_address = ""
+
+[dexs.orca]
+websocket_url = "wss://api.orca.so/v1/whirlpool/subscribe"
+pool_address = ""
