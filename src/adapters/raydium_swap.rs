@@ -28,10 +28,10 @@ pub struct RaydiumSwapAccounts {
     pub user_owner: Pubkey,
 }
 
-pub fn derive_amm_authority(amm_id: &Pubkey, nonce: u8) -> Result<Pubkey> {
+pub fn derive_amm_authority(nonce: u8) -> Result<Pubkey> {
     let program_id = Pubkey::from_str(RAYDIUM_AMM_PROGRAM)?;
     Ok(Pubkey::create_program_address(
-        &[&amm_id.to_bytes(), &[nonce]],
+        &[b"amm authority", &[nonce]],
         &program_id,
     )?)
 }
@@ -156,5 +156,15 @@ mod tests {
     fn test_raydium_swap_ix_owner_is_writable() {
         let ix = build_raydium_swap_ix(&dummy_accounts(), 1_000_000, 990_000);
         assert!(ix.accounts[17].is_writable);
+    }
+
+    #[test]
+    fn test_derive_amm_authority_known_value() {
+        let program_id = Pubkey::from_str(RAYDIUM_AMM_PROGRAM).unwrap();
+        let (expected_authority, nonce) = Pubkey::find_program_address(&[b"amm authority"], &program_id);
+        let derived = derive_amm_authority(nonce).unwrap();
+        assert_eq!(derived, expected_authority);
+        let known = Pubkey::from_str("5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1").unwrap();
+        assert_eq!(derived, known);
     }
 }

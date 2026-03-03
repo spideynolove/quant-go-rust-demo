@@ -68,6 +68,7 @@ pub struct PoolsConfig {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RaydiumPoolConfig {
     pub amm_id: String,
+    pub amm_authority: String,
     pub open_orders: String,
     pub target_orders: String,
     pub coin_vault: String,

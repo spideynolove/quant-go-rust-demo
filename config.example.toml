@@ -31,6 +31,7 @@ websocket_url = "wss://api.orca.so/v1/whirlpool/subscribe"
 
 [pools.raydium_sol_usdc]
 amm_id             = "YOUR_RAYDIUM_SOL_USDC_AMM_ID"
+amm_authority      = "YOUR_AMM_AUTHORITY"
 open_orders        = "YOUR_OPEN_ORDERS"
 target_orders      = "YOUR_TARGET_ORDERS"
 coin_vault         = "YOUR_COIN_VAULT"
