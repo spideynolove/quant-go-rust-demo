@@ -10,6 +10,7 @@ pub struct Config {
     pub risk: RiskConfig,
     pub logging: LoggingConfig,
     pub dexs: DexsConfig,
+    pub pools: PoolsConfig,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -57,6 +58,42 @@ pub struct DexsConfig {
 pub struct DexEndpointConfig {
     pub websocket_url: String,
     pub pool_address: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct PoolsConfig {
+    pub raydium_sol_usdc: RaydiumPoolConfig,
+    pub orca_sol_usdc: OrcaPoolConfig,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct RaydiumPoolConfig {
+    pub amm_id: String,
+    pub open_orders: String,
+    pub target_orders: String,
+    pub coin_vault: String,
+    pub pc_vault: String,
+    pub coin_mint: String,
+    pub pc_mint: String,
+    pub serum_program: String,
+    pub serum_market: String,
+    pub serum_bids: String,
+    pub serum_asks: String,
+    pub serum_event_queue: String,
+    pub serum_coin_vault: String,
+    pub serum_pc_vault: String,
+    pub serum_vault_signer: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct OrcaPoolConfig {
+    pub whirlpool: String,
+    pub token_vault_a: String,
+    pub token_vault_b: String,
+    pub token_mint_a: String,
+    pub token_mint_b: String,
+    pub oracle: String,
+    pub tick_spacing: u16,
 }
 
 pub fn load_config<P: AsRef<Path>>(path: P) -> Result<Config> {

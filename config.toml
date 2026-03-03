@@ -30,3 +30,29 @@ pool_address = ""
 [dexs.orca]
 websocket_url = "wss://api.orca.so/v1/whirlpool/subscribe"
 pool_address = ""
+
+[pools.raydium_sol_usdc]
+amm_id             = "58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWBkwMihLYQo2"
+open_orders        = "HmiHHzq4Fym9e1D4qzLS6LDDM3tNsCTBPDWHTLZ763jY"
+target_orders      = "CZza3Ej4Mc58MnxWA385itCC9jCo3L1D7zc3LKy1bZMR"
+coin_vault         = "DQyrAcCrDXQ7NeoqGgDCZwBvWDcYmFCjSb9JtteuvPpz"
+pc_vault           = "HLmqeL62xR1QoZ1HKKbXRrdN1p3phKpxRMb2VVopvBBz"
+coin_mint          = "So11111111111111111111111111111111111111112"
+pc_mint            = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+serum_program      = "srmqPvymJeFKQ4zGQed1GFppgkRHL9kaELCbyksJtPX"
+serum_market       = "8BnEgHoWFysVcuFFX7QztDmzuH8r5ZFvyP3sYwn1XTh6"
+serum_bids         = "5jWUncPNBMZJ3sTHKmMLszypVkoRK6bfEQMQUHweeQnh"
+serum_asks         = "EaXdHx7x3mdGA38j5RSmKYSXMzAFzzUXCLNBEDXDn1d5"
+serum_event_queue  = "8CvwxZ9Db6XbLD46NZwwmVDZZRDy7eydFcAGkXKh9axa"
+serum_coin_vault   = "CKxTHwM9fPMRRvZmFnFoqKNd9pQR21c5Aq9bh5h9oghX"
+serum_pc_vault     = "6A5NHCj1yF6urc9wZNe6Bcjj4LVszQNj5DwAWG97yzMu"
+serum_vault_signer = "CTz5UMLQm2SRWHzQnU62Pi4yJqbNGjgRBHqqp6oDHfF7"
+
+[pools.orca_sol_usdc]
+whirlpool     = "HJPjoWUrhoZzkNfRpHuieeFk9WcZWjwy6PBjZ81ngndJ"
+token_vault_a = "3YQm7ujtXWJU2e9jhp2QGHpnn1ShXn12QjvzMvDgabpX"
+token_vault_b = "2JTw1fE2wz1SymWUQ7UqpVtrTuKjcd6mWwYwUJUCh2rq"
+token_mint_a  = "So11111111111111111111111111111111111111112"
+token_mint_b  = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+oracle        = "4GkRbcYg1VKsZropgai4dMf2Nj2PkXNLf43knFpavrSi"
+tick_spacing  = 64
