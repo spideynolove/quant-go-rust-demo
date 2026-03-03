@@ -57,7 +57,6 @@ pub struct DexsConfig {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DexEndpointConfig {
     pub websocket_url: String,
-    pub pool_address: String,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

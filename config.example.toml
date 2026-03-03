@@ -1,0 +1,56 @@
+[nats]
+url = "nats://localhost:4222"
+
+[solana]
+rpc_url = "https://api.mainnet-beta.solana.com"
+ws_url = "wss://api.mainnet-beta.solana.com"
+keypair_path = "/path/to/keypair.json"
+commitment = "confirmed"
+
+[trading]
+min_spread_bps = 50
+min_profit_usd = 10.0
+max_position_size = 1000.0
+max_trade_size = 100.0
+slippage_tolerance_bps = 10
+
+[risk]
+max_open_positions = 5
+max_daily_loss = 100.0
+circuit_loss_threshold = 50.0
+
+[logging]
+level = "info"
+format = "json"
+
+[dexs.raydium]
+websocket_url = "wss://api.raydium.io/v2/subscribe"
+
+[dexs.orca]
+websocket_url = "wss://api.orca.so/v1/whirlpool/subscribe"
+
+[pools.raydium_sol_usdc]
+amm_id             = "YOUR_RAYDIUM_SOL_USDC_AMM_ID"
+open_orders        = "YOUR_OPEN_ORDERS"
+target_orders      = "YOUR_TARGET_ORDERS"
+coin_vault         = "YOUR_COIN_VAULT"
+pc_vault           = "YOUR_PC_VAULT"
+coin_mint          = "So11111111111111111111111111111111111111112"
+pc_mint            = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+serum_program      = "srmqPvymJeFKQ4zGQed1GFppgkRHL9kaELCbyksJtPX"
+serum_market       = "YOUR_SERUM_MARKET"
+serum_bids         = "YOUR_SERUM_BIDS"
+serum_asks         = "YOUR_SERUM_ASKS"
+serum_event_queue  = "YOUR_SERUM_EVENT_QUEUE"
+serum_coin_vault   = "YOUR_SERUM_COIN_VAULT"
+serum_pc_vault     = "YOUR_SERUM_PC_VAULT"
+serum_vault_signer = "YOUR_SERUM_VAULT_SIGNER"
+
+[pools.orca_sol_usdc]
+whirlpool     = "YOUR_ORCA_SOL_USDC_WHIRLPOOL"
+token_vault_a = "YOUR_TOKEN_VAULT_A"
+token_vault_b = "YOUR_TOKEN_VAULT_B"
+token_mint_a  = "So11111111111111111111111111111111111111112"
+token_mint_b  = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+oracle        = "YOUR_ORACLE"
+tick_spacing  = 64
