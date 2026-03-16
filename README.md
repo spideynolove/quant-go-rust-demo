@@ -90,10 +90,18 @@ See [Design Document](docs/plans/2026-02-06-solana-arbitrage-design.md) for full
 - ✅ Structured logging
 
 ### Phase 5: Testing & Docs (Days 11-14)
-- ✅ Unit tests (domain logic)
-- ✅ Integration tests (devnet)
+- ✅ Unit tests (40 passing)
+- ✅ Integration tests (4 passing)
 - ✅ Documentation
-- ⏳ Performance benchmarks
+- ✅ Criterion performance benchmarks
+
+### Phase 6: Real Swap Execution (2026-03-17)
+- ✅ Pool config layer (Raydium AMM v4 + Orca Whirlpool)
+- ✅ Runtime pool-state fetching (nonce, tick index)
+- ✅ Raydium AMM v4 swap instruction builder
+- ✅ Orca Whirlpool swap instruction builder with tick array PDA derivation
+- ✅ SolanaExecutor wired with real swap instructions
+- ✅ ATA derivation (inlined, no external crate)
 
 ## Technology Stack
 
@@ -240,13 +248,26 @@ PositionUpdate
 - Architecture Diagram (coming soon)
 - API/Event Documentation (coming soon)
 
+## Benchmarks
+
+Instruction construction latency (measured with Criterion on release build):
+
+| Operation | Time |
+|-----------|------|
+| `build_raydium_swap_ix` | ~158 ns |
+| `build_orca_swap_ix` | ~113 ns |
+| `derive_tick_arrays` (PDA x3) | ~21 µs |
+
+Run benchmarks: `cargo bench`
+
 ## Development Progress
 
-All core features implemented and tested. Ready for devnet deployment and further testing.
+Real swap execution complete. Bot constructs valid Raydium AMM v4 and Orca Whirlpool swap instructions with correct byte layout, account ordering, and PDA derivation. Ready for devnet simulation.
 
-**Implementation Complete:** 2026-02-08
-**Unit Tests:** 7 passing
-**Integration Tests:** 3 passing
+**Implementation Complete:** 2026-03-17
+**Unit Tests:** 40 passing
+**Integration Tests:** 4 passing
+**Benchmarks:** 3 benchmarks (instruction build latency sub-200ns)
 
 ## License
 

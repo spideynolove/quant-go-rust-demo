@@ -59,6 +59,7 @@ async fn main() -> Result<()> {
         publisher.clone(),
         config.solana.rpc_url.clone(),
         config.solana.keypair_path.clone(),
+        config.pools.clone(),
     ) {
         Ok(executor) => {
             info!("SolanaExecutor initialized");
